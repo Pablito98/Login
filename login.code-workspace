@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": ".vscode",
+			"path": "../../Documenti/MyCourse/MyCourse/.vscode"
+		},
+		{
+			"name": "Login",
+			"path": "."
+		}
+	],
+	"settings": {}
+}
