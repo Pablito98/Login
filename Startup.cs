@@ -22,17 +22,18 @@ namespace Login
         
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-   
-            });
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+    services.Configure<MvcOptions>(options =>
+    {
+        options.EnableEndpointRouting = false;
+    });
+           
 
                 services.AddTransient<ILoginService, AdoNetLoginService>();
 
                 services.AddTransient<IDatabaseAccessor, SqliteDatabaseAccessor>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,12 +49,9 @@ namespace Login
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             
-            app.UseMvcWithDefaultRoute();
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+           app.UseRouting();
+            app.UseEndpoints(routeBuilder => {
+                routeBuilder.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
