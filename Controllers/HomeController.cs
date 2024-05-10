@@ -40,8 +40,6 @@ namespace Login.Controllers
     }
 [HttpPost] public async Task<IActionResult> Iscrizione(UtentiListInputModel model)
         {
-
-            
                 try
                 {
                     // Eseguiamo l'inserimento dell'utente nel database

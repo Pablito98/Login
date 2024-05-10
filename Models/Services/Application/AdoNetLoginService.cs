@@ -19,7 +19,7 @@ namespace Login.Models.Services.Application
         }
 
 
-        public async Task<List<UtentiViewModel>> GetUtentiAsync(UtentiListInputModel model)
+        public async Task<List<UtentiViewModel>> GetUtentiAsync(SearchListInputModel model)
         {
 
             FormattableString query = $"SELECT *  FROM iscritto WHERE nome LIKE {"%"+model.Search+"%"}";
@@ -37,8 +37,6 @@ namespace Login.Models.Services.Application
 
         public async Task<int> EliminaUtenteAsync(int id)
         {
-
-
             try
             {
                 FormattableString query = $"DELETE FROM iscritto WHERE id = {id}";

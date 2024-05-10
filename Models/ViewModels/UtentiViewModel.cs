@@ -22,10 +22,10 @@ namespace Login.Models.ViewModels
         var utentiViewModel = new UtentiViewModel 
         {
             Id = Convert.ToInt32(utentiRow["id"]),
-             Nome= Convert.ToString(utentiRow["nome"]),
-              Email= Convert.ToString(utentiRow["email"]),
-               Nazione= Convert.ToString(utentiRow["nazione"]),
-                Password= Convert.ToString(utentiRow["password"]),
+            Nome= Convert.ToString(utentiRow["nome"]),
+            Email= Convert.ToString(utentiRow["email"]),
+            Nazione= Convert.ToString(utentiRow["nazione"]),
+            Password= Convert.ToString(utentiRow["password"]),
 
 
         };

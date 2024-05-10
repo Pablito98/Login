@@ -11,5 +11,7 @@ namespace Login.Models.ViewModels
         public List<UtentiViewModel> Utenti {get;set;}
 
         public UtentiListInputModel Input {get;set;}
+
+        public SearchListInputModel Ricerca {get;set;}
     }
 }

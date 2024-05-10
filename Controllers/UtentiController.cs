@@ -13,9 +13,6 @@ using Login.Models.InputModels;
 
 namespace Login.Controllers
 {
-
-   
-   
     public class UtentiController : Controller
     {
             private readonly ILoginService LoginService;
@@ -26,17 +23,16 @@ namespace Login.Controllers
         }
        
 
-        public async Task<IActionResult> Accesso(UtentiListInputModel model)
+        public async Task<IActionResult> Accesso(SearchListInputModel model)
         {
             
             List<UtentiViewModel> utenti = await LoginService.GetUtentiAsync(model);
 
             UtentiListViewModel viewModel = new UtentiListViewModel{
                 Utenti = utenti,
-                Input = model
+                Ricerca = model
             };
   
-           
             return View(viewModel);
         }
 
@@ -66,8 +62,5 @@ namespace Login.Controllers
                 return View("Accesso"); // Esempio: reindirizza alla pagina di errore
             }
         }
-
-        
-
     }
 }
