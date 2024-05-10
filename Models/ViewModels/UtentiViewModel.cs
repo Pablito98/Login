@@ -8,30 +8,30 @@ namespace Login.Models.ViewModels
 {
     public class UtentiViewModel
     {
-        public int Id {get; set;}
+        public int Id { get; set; }
 
-        public string Nome {get; set;}
+        public string Nome { get; set; }
 
-        public string Email {get; set;}
-     public string Nazione {get; set;}
+        public string Email { get; set; }
+        public string Nazione { get; set; }
 
-     public string Password {get; set;}
+        public string Password { get; set; }
 
-     public static UtentiViewModel FromDataRow(DataRow utentiRow)
-     {
-        var utentiViewModel = new UtentiViewModel 
+        public static UtentiViewModel FromDataRow(DataRow utentiRow)
         {
-            Id = Convert.ToInt32(utentiRow["id"]),
-            Nome= Convert.ToString(utentiRow["nome"]),
-            Email= Convert.ToString(utentiRow["email"]),
-            Nazione= Convert.ToString(utentiRow["nazione"]),
-            Password= Convert.ToString(utentiRow["password"]),
+            var utentiViewModel = new UtentiViewModel
+            {
+                Id = Convert.ToInt32(utentiRow["id"]),
+                Nome = Convert.ToString(utentiRow["nome"]),
+                Email = Convert.ToString(utentiRow["email"]),
+                Nazione = Convert.ToString(utentiRow["nazione"]),
+                Password = Convert.ToString(utentiRow["password"]),
 
 
-        };
-        return utentiViewModel;
+            };
+            return utentiViewModel;
 
-     }
+        }
 
 
     }

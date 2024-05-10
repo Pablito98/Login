@@ -19,14 +19,16 @@ namespace Login.Models.InputModels
         public string Password {get;}
 
         public string Nome {get;}
+        public int Id {get;}
 
 
-        public UtentiListInputModel(string nome, string email, string nazione, string password)
+        public UtentiListInputModel(string nome, string email, string nazione, string password, int id)
         {
             this.Nome=nome;
             this.Email=email;
             this.Nazione=nazione;
             this.Password=password;
+            this.Id = id;
         } 
     }
 }

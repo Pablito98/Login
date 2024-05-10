@@ -8,6 +8,9 @@ using Microsoft.Extensions.Logging;
 using Login.Models.Services.Application;
 using Microsoft.Data.Sqlite;
 using Login.Models.ViewModels;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Data.Sqlite;
+using Login.Models.InputModels;
 
 namespace Login.Controllers
 {
@@ -23,20 +26,18 @@ namespace Login.Controllers
             this.LoginService = loginService;
         }
 
-
-
         public IActionResult Index()
         {
             return View();
         }
 
 
-        public async Task<IActionResult> LoginUtente(UtentiViewModel model)
+        public async Task<IActionResult> LoginUtente(UtentiListInputModel model)
         {
             try
             {
                 // Eseguiamo l'inserimento dell'utente nel database
-                bool registrationResult = await LoginService.LoginUtente(model.Email, model.Password);
+                bool registrationResult = await LoginService.LoginUtente(model);
                 if (registrationResult)
                 {
                     // La registrazione è avvenuta con successo, reindirizziamo l'utente alla pagina di successo

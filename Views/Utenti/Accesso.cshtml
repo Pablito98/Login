@@ -22,7 +22,10 @@
 		<h3 class="text-center">List of Users</h3>
 		<hr>
 		<div class="container text-left">
-			<a href="#" class="btn btn-success">Add New User</a>
+			<a class="btn btn-success" asp-action="Index" asp-controller="Home">Add New User</a>
+
+
+
 		</div>
 		<br>
 		<table class="table table-bordered">
@@ -43,7 +46,7 @@
 						<td>@utente.Nome</td>
 						<td>@utente.Email</td>
 						<td>@utente.Nazione</td>
-						<td><a asp-controller=""  asp-action="">updateUser</a></td>
+						<td><a asp-controller="Utenti" asp-action="Update" asp-route-id="@utente.Id">updateUser</a></td>
 						<td><a asp-controller="Utenti" asp-action="DeleteRecord" asp-route-id="@utente.Id" >deleteUser</a></td>
 					</tr>
 				}

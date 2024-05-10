@@ -9,13 +9,16 @@ namespace Login.Models.Services.Application
 {
     public interface ILoginService
     {
-          Task<List<UtentiViewModel>> GetUtentiAsync(SearchListInputModel model);
-          //Task<bool> RegistraUtenteAsync(string nome, string email, string nazione, string password);
-          Task<bool> RegistraUtenteAsync(UtentiListInputModel model);
+        Task<List<UtentiViewModel>> GetUtentiAsync(SearchListInputModel model);
+        //Task<bool> RegistraUtenteAsync(string nome, string email, string nazione, string password);
+        Task<bool> RegistraUtenteAsync(UtentiListInputModel model);
 
-          Task<int> EliminaUtenteAsync(int id);
+        Task<int> EliminaUtenteAsync(int id);
 
-          Task<bool> LoginUtente(string email, string password);
+        Task<bool> LoginUtente(UtentiListInputModel model);
+
+        Task<bool> UpdateUtenteAsync(UtentiListInputModel model);
+        Task<UtentiViewModel> RecuperaUtente(int id);
     }
 
 }

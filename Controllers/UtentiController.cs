@@ -15,28 +15,30 @@ namespace Login.Controllers
 {
     public class UtentiController : Controller
     {
-            private readonly ILoginService LoginService;
-          public UtentiController(ILoginService loginService)
+        private readonly ILoginService LoginService;
+        public UtentiController(ILoginService loginService)
         {
             //verrà iniettato automaticamente un oggetto di una classe che implementa l'interfaccia ICourseService
             this.LoginService = loginService;
         }
-       
+
 
         public async Task<IActionResult> Accesso(SearchListInputModel model)
         {
-            
+
             List<UtentiViewModel> utenti = await LoginService.GetUtentiAsync(model);
 
-            UtentiListViewModel viewModel = new UtentiListViewModel{
+            UtentiListViewModel viewModel = new UtentiListViewModel
+            {
                 Utenti = utenti,
                 Ricerca = model
             };
-  
+
             return View(viewModel);
         }
 
-       public async Task<IActionResult> DeleteRecord(int id)
+        public async Task<IActionResult> DeleteRecord(int id)
+
         {
             try
             {
@@ -47,12 +49,12 @@ namespace Login.Controllers
                 if (rowsAffected > 0)
                 {
                     // Il record è stato eliminato con successo, esegui un'azione appropriata (reindirizzamento, messaggio, ecc.)
-                    return RedirectToAction("Accesso"); 
+                    return RedirectToAction("Accesso");
                 }
                 else
                 {
-                    
-                    return RedirectToAction("Accesso"); 
+
+                    return RedirectToAction("Accesso");
                 }
             }
             catch (Exception ex)
@@ -62,5 +64,48 @@ namespace Login.Controllers
                 return View("Accesso"); // Esempio: reindirizza alla pagina di errore
             }
         }
+
+
+        public async Task<IActionResult> Update(int id)
+        {
+            
+            UtentiViewModel utente = await LoginService.RecuperaUtente(id);
+            
+            // Carica la vista del modulo di iscrizione
+            return View(utente);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateRecord(UtentiListInputModel model)
+        {
+            try
+            {
+                // Chiamata al metodo del servizio applicativo per eliminare il record
+                bool rowsAffected = await LoginService.UpdateUtenteAsync(model);
+
+                // Verifica se il record è stato eliminato correttamente
+                if (rowsAffected)
+                {
+                    // Il record è stato eliminato con successo, esegui un'azione appropriata (reindirizzamento, messaggio, ecc.)
+                    return RedirectToAction("Accesso");
+                }
+                else
+                {
+
+                    return RedirectToAction("Accesso");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Gestisci eventuali eccezioni durante l'eliminazione del record
+                ModelState.AddModelError(string.Empty, "Si è verificato un errore durante l'aggiornamento del record.");
+                return View("Accesso"); // Esempio: reindirizza alla pagina di errore
+            }
+
+           
+        }
+
+
+
     }
 }
