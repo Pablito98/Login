@@ -58,7 +58,6 @@ namespace Login.Models.Services.Application
         {
             FormattableString query = $"INSERT INTO iscritto (nome, email, nazione, password) VALUES ({model.Nome}, {model.Email}, {model.Nazione}, {model.Password})";
 
-
             try
             {
                 await db.QueryAsync(query);

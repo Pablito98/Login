@@ -22,8 +22,17 @@ namespace Login.Customizations.ModelBinders
             string nome = bindingContext.ValueProvider.GetValue("Nome").FirstValue;
             string email = bindingContext.ValueProvider.GetValue("Email").FirstValue;
             string nazione = bindingContext.ValueProvider.GetValue("Nazione").FirstValue;
-            string password = bindingContext.ValueProvider.GetValue("Password").FirstValue;
-            int id = Convert.ToInt32(bindingContext.ValueProvider.GetValue("Id").FirstValue);
+            string password = bindingContext.ValueProvider.GetValue("Password").FirstValue; 
+            int id;   
+            try
+            {
+                id = Convert.ToInt32(bindingContext.ValueProvider.GetValue("Id").FirstValue);
+            }
+            catch(System.FormatException)
+            {
+                id = 0; // or other default value as appropriate in context.
+            }        
+            //int id = Convert.ToInt32(bindingContext.ValueProvider.GetValue("Id").FirstValue);
  
             //Creiamo l'istanza del CourseListInputModel
             var inputModel = new UtentiListInputModel(nome,email,nazione,password, id);
